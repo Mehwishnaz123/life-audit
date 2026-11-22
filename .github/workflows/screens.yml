@@ -1,0 +1,33 @@
+name: Take phone and laptop screenshots of the live site
+on:
+  workflow_dispatch:
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm i playwright@1 && npx playwright install --with-deps chromium
+      - name: Screenshots
+        run: |
+          cat > shots.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const site = 'https://lifeaudit-app.netlify.app';
+          const pages = ['/', '/features', '/pricing', '/faq', '/about', '/login', '/signup'];
+          const b = await chromium.launch();
+          for (const [name, vp] of [['phone', { width: 390, height: 844 }], ['laptop', { width: 1366, height: 800 }]]) {
+            const p = await b.newPage({ viewport: vp, deviceScaleFactor: 1 });
+            for (const path of pages) {
+              await p.goto(site + path, { waitUntil: 'networkidle' });
+              await p.waitForTimeout(1500);
+              await p.screenshot({ path: `${name}${path === '/' ? '-home' : path.replace(/\//g, '-')}.jpg`, fullPage: true, quality: 60, type: 'jpeg' });
+            }
+          }
+          await b.close();
+          JS
+          node shots.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: '*.jpg'

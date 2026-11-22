@@ -402,3 +402,7 @@ h1, h2, h3 { text-wrap: balance; }
 .chat-orb.small::after { inset: 7px; }
 .ai-wand { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 50%; background: #2A1533; font-size: 22px; animation: orbspin 6s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .ai-wand { animation: none; } }
+
+/* Product tour video */
+.tour-frame { position: relative; border-radius: 28px; padding: 8px; background: var(--grad); box-shadow: 0 30px 70px rgba(255,79,139,.25); }
+.tour-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 22px; background: #2A1533; }

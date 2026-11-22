@@ -100,11 +100,11 @@ export default async function HomePage() {
                 <Link href="/signup" className="btn glowbtn" style={{ minHeight: 54, padding: '0 28px', fontSize: 17 }}>
                   {settings.cta_label}
                 </Link>
-                <Link href="#how" style={{ padding: '16px 8px', fontWeight: 500, color: '#FFC93C' }}>
-                  See how it works ↓
+                <Link href="#tour" style={{ padding: '16px 8px', fontWeight: 600, color: '#FFC93C' }}>
+                  ▶ Watch the tour
                 </Link>
               </div>
-              <p style={{ margin: 0, fontSize: 14, color: '#D9C2D6' }}>Free to start · No card needed · Works on phone and computer</p>
+              <p style={{ margin: 0, fontSize: 14, color: '#D9C2D6' }}>Free early access · Every feature unlocked · Works on phone and computer</p>
             </div>
             <LifeCore />
           </div>
@@ -151,6 +151,22 @@ export default async function HomePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section id="tour" className="section" aria-labelledby="tour-title">
+        <div className="wrap stack-lg">
+          <div className="stack" style={{ maxWidth: 680 }}>
+            <span className="eyebrow">Watch the tour</span>
+            <h2 id="tour-title" className="h2">Every feature in under 2 minutes.</h2>
+            <p className="muted" style={{ margin: 0 }}>Hourly planning, habits, goals, journal, weekly reports, life balance, AI Coach and AI Planner, with captions and a voice-over.</p>
+          </div>
+          <div className="tour-frame">
+            <video controls playsInline preload="none" poster="/demo-poster.jpg" aria-label="Life Audit product tour with captions">
+              <source src="/demo.mp4" type="video/mp4" />
+              Your browser cannot play this video.
+            </video>
+          </div>
         </div>
       </section>
 

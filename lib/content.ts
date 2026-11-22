@@ -30,7 +30,8 @@ export const DEFAULT_FAQS: Faq[] = [
   ['Is my journal private?', 'Yes. Journal and gratitude entries belong to your account only. Other users can never see them, and they are never shown to search engines.'],
   ['Can I create my own life areas?', 'Yes. The default areas (faith, career, education, health, family, growth and finance) are a starting point. You can rename, archive or add your own.'],
   ['What happens to my data if I downgrade?', 'Everything you have already recorded stays readable and exportable. A downgrade only limits creating new items beyond the free plan.'],
-  ['Does the AI assistant make things up about me?', 'No. The assistant is planned for a later release and is designed to use only the activity you recorded. With too little data it says so.'],
+  ['Does the AI Coach make things up about me?', 'No. The AI Coach and AI Planner only read a short summary of what you recorded in Life Audit. If something has not been recorded, they say so instead of guessing.'],
+  ['Is Life Audit free?', 'Yes. Right now Life Audit is in free early access, so every feature, including Premium and Pro, is unlocked for free. When paid plans start, you will be told first, and your data always stays yours.'],
 ].map(([question, answer], i) => ({ id: 'default-' + i, question, answer, sort_order: i, published: true }));
 
 export const DEFAULT_PLANS: Plan[] = [
