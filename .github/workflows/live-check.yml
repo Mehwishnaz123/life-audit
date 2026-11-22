@@ -1,0 +1,28 @@
+name: Check the live website
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open every page on the live site
+        run: |
+          SITE=https://lifeaudit-app.netlify.app
+          fail=0
+          for p in / /features /pricing /faq /about /privacy /terms /login /signup /forgot-password /reset-password /sitemap.xml /robots.txt /manifest.webmanifest /icon.svg; do
+            code=$(curl -s -o page.html -w '%{http_code}' $SITE$p)
+            echo "$code  $p"
+            [ "$code" = "200" ] || fail=1
+            if grep -qi "Application error\|Internal Server Error" page.html; then echo "  ^ shows an error"; fail=1; fi
+          done
+          for p in /app /app/day /app/coach /app/planner /admin; do
+            r=$(curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}' $SITE$p)
+            echo "$r  $p (should go to login)"
+            case "$r" in 30*login*) ;; *) fail=1;; esac
+          done
+          echo "--- robots.txt ---"; curl -s $SITE/robots.txt
+          echo "--- sitemap (first lines) ---"; curl -s $SITE/sitemap.xml | head -c 600; echo
+          echo "--- canonical on home ---"; curl -s $SITE/ | grep -o '<link rel="canonical"[^>]*>' | head -1
+          exit $fail
