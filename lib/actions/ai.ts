@@ -5,7 +5,7 @@ import { addDays } from '@/lib/dates';
 import { askGemini, isAiConnected, takeAiCredit } from '@/lib/gemini';
 import { buildFacts, FACT_RULES } from '@/lib/ai-facts';
 
-type Result<T> = { ok: true; data: T } | { ok: false; error: string };
+type Result<T> = { ok: boolean; data?: T; error?: string };
 const NOT_CONNECTED = 'The AI is not connected yet. The owner needs to add a Gemini key (see README).';
 const LIMIT = 'You have used today\'s AI messages. They refresh tomorrow.';
 

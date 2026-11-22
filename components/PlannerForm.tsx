@@ -25,7 +25,7 @@ export default function PlannerForm({ connected, today }: { connected: boolean; 
     setError(''); setSaved(false); setPlan(null);
     start(async () => {
       const r = await makePlan({ goal, deadline, hours, times });
-      if (r.ok) setPlan(r.data); else setError(r.error);
+      if (r.ok && r.data) setPlan(r.data); else setError(r.error || "Something went wrong.");
     });
   }
   function save() {
@@ -33,7 +33,7 @@ export default function PlannerForm({ connected, today }: { connected: boolean; 
     setError('');
     start(async () => {
       const r = await savePlan(plan, withBlocks);
-      if (r.ok) setSaved(true); else setError(r.error);
+      if (r.ok) setSaved(true); else setError(r.error || "Something went wrong.");
     });
   }
 

@@ -27,8 +27,8 @@ export default function CoachChat({ name, connected }: { name: string; connected
     setText('');
     start(async () => {
       const r = await askCoach(history, question);
-      if (r.ok) setTurns((t) => [...t, { role: 'model', text: r.data }]);
-      else { setError(r.error); setTurns(history); setText(question); }
+      if (r.ok) setTurns((t) => [...t, { role: 'model', text: r.data || '' }]);
+      else { setError(r.error || 'Something went wrong.'); setTurns(history); setText(question); }
     });
   }
 
