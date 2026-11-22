@@ -303,7 +303,7 @@ h1, h2, h3 { text-wrap: balance; }
 .tl-when b { color: var(--rasp); }
 @media (max-width: 760px) { .timeline::before { left: 43px; right: auto; top: 22px; bottom: 22px; width: 4px; height: auto; background: linear-gradient(180deg, #FF7A2F, #FFC93C, #FF4F8B, #7B4BC9); transform-origin: top; } .tl-step { padding: 18px 18px 18px 78px; } .tl-dot { top: 18px; } }
 .mobile-cta { display: none; }
-@media (max-width: 760px) { .mobile-cta { display: flex; position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 40; min-height: 54px; align-items: center; justify-content: center; border-radius: 999px; background: var(--grad); color: var(--ink); font-weight: 700; text-decoration: none; box-shadow: 0 14px 30px rgba(255,79,139,.4); } }
+@media (max-width: 760px) { .mobile-cta { display: flex; position: fixed; left: 14px; right: 14px; bottom: 72px; z-index: 40; min-height: 54px; align-items: center; justify-content: center; border-radius: 999px; background: var(--grad); color: var(--ink); font-weight: 700; text-decoration: none; box-shadow: 0 14px 30px rgba(255,79,139,.4); } }
 
 /* ===== Marquee and app showcase ===== */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }

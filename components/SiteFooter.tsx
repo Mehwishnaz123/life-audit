@@ -18,8 +18,7 @@ export default function SiteFooter({ contactEmail }: { contactEmail: string }) {
           <Link href="/terms">Terms</Link>
         </nav>
         <p className="muted" style={{ margin: 0 }}>
-          Contact: {contactEmail.includes('@') ? <a href={'mailto:' + contactEmail}>{contactEmail}</a> : contactEmail}
-          <br />© {new Date().getFullYear()} {SITE_NAME}
+          {contactEmail.includes('@') && <>Contact: <a href={'mailto:' + contactEmail}>{contactEmail}</a><br /></>}© {new Date().getFullYear()} {SITE_NAME}
         </p>
       </div>
     </footer>

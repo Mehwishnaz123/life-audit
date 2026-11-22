@@ -19,9 +19,9 @@ export const DEFAULT_SETTINGS: Settings = {
   hero_title: 'Your entire life, finally in one place.',
   hero_subtitle: 'Plan your days. Build your future. Track your growth. Understand your life.',
   cta_label: 'Start Managing Your Life',
-  founder_name: '[Founder name]',
-  founder_bio: '[A few lines about who is building this product and why.]',
-  contact_email: '[YOUR EMAIL]',
+  founder_name: 'Mehwish Naz',
+  founder_bio: 'A computer science student from Larkana, Pakistan. I am building Life Audit because I wanted one place to plan my day, keep my habits and see honestly where my time really goes.',
+  contact_email: '',
 };
 
 export const DEFAULT_FAQS: Faq[] = [
@@ -55,7 +55,7 @@ export async function getSiteContent(): Promise<{ settings: Settings; faqs: Faq[
     if (s.error || f.error || p.error) throw s.error || f.error || p.error;
     const settings = { ...DEFAULT_SETTINGS };
     (s.data || []).forEach((r: any) => {
-      if (r.value) settings[r.key] = r.value;
+      if (r.value && !String(r.value).trim().startsWith('[')) settings[r.key] = r.value;
     });
     return {
       settings,

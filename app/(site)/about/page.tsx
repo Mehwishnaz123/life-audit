@@ -30,8 +30,7 @@ export default async function AboutPage() {
             <li>Your journal is private, and your data is exportable.</li>
             <li>A plan change never locks the data you already have.</li>
           </ul>
-          <h2>Contact</h2>
-          <p>{settings.contact_email}</p>
+          {settings.contact_email?.includes('@') && (<><h2>Contact</h2><p><a href={'mailto:' + settings.contact_email}>{settings.contact_email}</a></p></>)}
         </div>
       </div>
     </section>
