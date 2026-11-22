@@ -70,7 +70,7 @@ export default async function HabitsPage() {
               </div>
               <div role="img" aria-label={`${h.title}: done on ${done.size} of the last ${DAYS} days`} style={{ display: 'grid', gridTemplateColumns: 'repeat(14, minmax(0, 1fr))', gap: 4 }}>
                 {dates.map((d) => (
-                  <span key={d} title={d} style={{ aspectRatio: '1', borderRadius: 5, background: done.has(d) ? color : d < created ? 'transparent' : 'var(--track)', outline: d === today ? '2px solid var(--ink)' : 'none' }} />
+                  <span key={d} title={d} style={{ aspectRatio: '1', borderRadius: 5, background: done.has(d) ? color : d < created ? 'transparent' : 'var(--track)', border: !done.has(d) && d < created ? '1.5px dashed var(--line)' : 'none', boxSizing: 'border-box', outline: d === today ? '2px solid var(--ink)' : 'none' }} />
                 ))}
               </div>
               <div className="row" style={{ justifyContent: 'space-between', fontSize: 14 }}>

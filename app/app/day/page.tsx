@@ -96,7 +96,7 @@ export default async function DayPage({ searchParams }: { searchParams: Promise<
                 <h2 className="h3">{b.title}</h2>
                 {r && (
                   <p className="muted" style={{ margin: 0 }}>
-                    {r.status !== 'skipped' && <>Actual time: {fmtMinutes(actualMinutes(b))}. </>}
+                    {r.status === 'done' && <>Actual time: {fmtMinutes(actualMinutes(b))}. </>}{r.status === 'partial' && (r.actual_minutes != null ? <>Actual time: {fmtMinutes(r.actual_minutes)} of {fmtMinutes(plannedMinutes(b))}. </> : <>How many minutes did you really spend? Add them below so your reports are right. </>)}
                     {r.skip_reason && <>Reason: {r.skip_reason}. </>}
                     {r.next_action && <>Next: {NEXT.find((n) => n[0] === r.next_action)?.[1]}{r.rescheduled_to ? ` (${r.rescheduled_to})` : ''}. </>}
                     {r.actual_note && <>Note: {r.actual_note}</>}
@@ -109,7 +109,7 @@ export default async function DayPage({ searchParams }: { searchParams: Promise<
                     <div className="row">
                       <div className="field" style={{ flex: '1 1 140px' }}>
                         <label htmlFor={'am-' + b.id}>Actual minutes</label>
-                        <input id={'am-' + b.id} name="actual_minutes" type="number" min={0} className="input" defaultValue={r?.actual_minutes ?? plannedMinutes(b)} />
+                        <input id={'am-' + b.id} name="actual_minutes" type="number" min={0} className="input" defaultValue={r?.actual_minutes ?? ''} placeholder={plannedMinutes(b) + ' planned'} />
                       </div>
                       <div className="field" style={{ flex: '1 1 180px' }}>
                         <label htmlFor={'sr-' + b.id}>If skipped, why?</label>

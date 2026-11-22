@@ -49,7 +49,7 @@ export default async function AuditPage({ searchParams }: { searchParams: Promis
   };
 
   const findings: string[] = [];
-  if (cur.rate != null) findings.push(`You completed ${Math.round(cur.doneItems * 10) / 10} of ${cur.plannedItems} planned items (${pct(cur.rate)}).`);
+  if (cur.rate != null) findings.push(`You got through ${pct(cur.rate)} of what you planned (${cur.plannedItems} planned item${cur.plannedItems === 1 ? '' : 's'}; a partly done item counts as half).`);
   if (cur.plannedMin) findings.push(`You planned ${fmtMinutes(cur.plannedMin)} of time blocks and recorded ${fmtMinutes(cur.actualMin)} actually spent.`);
   if (cur.unrecorded.length) findings.push(`${cur.unrecorded.length} time block${cur.unrecorded.length > 1 ? 's are' : ' is'} not recorded yet, so they are left out of the actual time.`);
   if (best && worst && best.date !== worst.date) findings.push(`Strongest day: ${prettyDate(best.date)} (${pct(best.rate)}). Lightest day: ${prettyDate(worst.date)} (${pct(worst.rate)}).`);
@@ -137,7 +137,7 @@ export default async function AuditPage({ searchParams }: { searchParams: Promis
               <h2 className="h3 serif" style={{ fontSize: 22, fontWeight: 500 }}>Still open</h2>
               {cur.tasksOpenDue.length + cur.unfinished.length === 0 && <p className="muted" style={{ margin: 0 }}>Nothing left open for this period.</p>}
               {cur.tasksOpenDue.map((t: any) => <div key={t.id} className="task-row"><span className="chip tone-today">Task</span><span className="task-title">{t.title}</span><span className="muted">{t.due_date}</span></div>)}
-              {cur.unfinished.map((b) => <div key={b.id} className="task-row"><span className="chip tone-week">{b.record?.status}</span><span className="task-title">{b.title}</span><span className="muted">{b.date}</span></div>)}
+              {cur.unfinished.map((b) => <div key={b.id} className="task-row"><span className="chip tone-week">{b.record?.status === 'partial' ? 'Partly done' : b.record?.status === 'skipped' ? 'Skipped' : 'Not done'}</span><span className="task-title">{b.title}</span><span className="muted">{b.date}</span></div>)}
             </div>
           </section>
         </>

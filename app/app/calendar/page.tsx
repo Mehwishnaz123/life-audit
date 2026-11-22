@@ -100,7 +100,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
             <div key={b.id} className="task-row" style={{ background: '#fff' }}>
               <span className="muted" style={{ width: 70 }}>{clock(b.start_time)}</span>
               <span className="task-title">{b.title}</span>
-              <span className={'chip ' + (b.record?.status === 'done' ? 'tone-done' : b.record ? 'tone-week' : 'tone-none')}>{b.record ? b.record.status : 'not recorded'}</span>
+              <span className={'chip ' + (b.record?.status === 'done' ? 'tone-done' : b.record ? 'tone-week' : 'tone-none')}>{b.record ? ({ done: 'Done', partial: 'Partly done', skipped: 'Skipped' } as Record<string, string>)[b.record.status] || b.record.status : 'Not recorded'}</span>
             </div>
           ))}
           {s.habits > 0 && <p style={{ margin: 0 }}>{s.habits} habit check-in{s.habits > 1 ? 's' : ''}.</p>}

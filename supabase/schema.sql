@@ -406,3 +406,15 @@ where not exists (select 1 from public.site_faqs);
 -- Replace the email below with yours, then run just this line:
 --   update public.profiles set role = 'admin' where id = (select id from auth.users where email = 'you@example.com');
 -- =====================================================================
+
+-- ---------- Table permissions for the app (added after launch) ----------
+-- New Supabase projects do not grant table access automatically. Row Level Security above
+-- still limits every signed-in user to their own rows.
+grant usage on schema public to anon, authenticated;
+grant select, insert, update, delete on all tables in schema public to authenticated;
+grant usage, select on all sequences in schema public to authenticated;
+revoke insert, update, delete on public.profiles from authenticated;
+grant update (display_name, timezone, week_start, date_format, theme, updated_at) on public.profiles to authenticated;
+revoke insert, update, delete on public.subscriptions from authenticated;
+grant select on public.site_settings, public.site_faqs, public.site_plans to anon;
+grant execute on function public.is_admin() to anon, authenticated;
