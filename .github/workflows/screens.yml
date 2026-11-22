@@ -1,6 +1,8 @@
 name: Take phone and laptop screenshots of the live site
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   shots:
     runs-on: ubuntu-latest
@@ -27,7 +29,9 @@ jobs:
           await b.close();
           JS
           node shots.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: '*.jpg'
+      - name: Save screenshots to the 'screenshots' branch
+        run: |
+          mkdir out && mv *.jpg out/ && cd out
+          git init -q -b screenshots && git add -A
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "Screenshots"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" screenshots
