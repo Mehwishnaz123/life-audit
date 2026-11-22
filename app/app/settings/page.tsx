@@ -10,7 +10,6 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
   const { profile, user, name, timezone, supabase } = await getAppContext();
   const [{ data: del }, { plans }] = await Promise.all([supabase.from('deletion_requests').select('created_at').maybeSingle(), getSiteContent()]);
   const zones = ZONES.includes(timezone) ? ZONES : [timezone, ...ZONES];
-  const plan = plans.find((p) => p.id === (profile?.plan || 'free'));
 
   return (
     <div className="view">
@@ -37,8 +36,8 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         <div className="stack" style={{ gap: 16 }}>
           <div className="card">
             <h2 className="h3 serif" style={{ fontSize: 22, fontWeight: 500 }}>Your plan</h2>
-            <p style={{ margin: 0 }}><strong>{plan?.name || 'Free'}</strong> · {plan?.price_label} {plan?.period}</p>
-            <p className="muted" style={{ margin: 0 }}>Payments are not connected yet. Upgrading opens once a payment provider is added. Downgrading never locks your data.</p>
+            <p style={{ margin: 0 }}><strong>Early access</strong> · everything unlocked, free</p>
+            <p className="muted" style={{ margin: 0 }}>You can use every feature, including Premium and Pro, for free while Life Audit is in early access. When paid plans start, we will tell you first. Your data always stays yours, whatever plan you choose.</p>
           </div>
           <div className="card">
             <h2 className="h3 serif" style={{ fontSize: 22, fontWeight: 500 }}>Your data</h2>
