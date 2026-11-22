@@ -388,3 +388,17 @@ h1, h2, h3 { text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .chat-orb, .bubble, .plan-steps li, .chat-hello, .plan-card { animation: none; } }
 
 .early-note { margin: 8px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--butter); color: #5A3D0C; font-size: 14px; line-height: 1.45; }
+
+/* AI helper cards on the dashboard */
+.ai-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px; }
+.ai-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 22px; text-decoration: none; color: var(--ground); background: linear-gradient(120deg, #2A1533, #4A2C55); box-shadow: 0 14px 30px rgba(42,21,51,.18); }
+.ai-card strong { font-size: 18px; color: #fff; }
+.ai-card span span { font-size: 14px; color: #FBE4EA; }
+.ai-card.alt { background: linear-gradient(120deg, #FF7A2F, #FF4F8B); color: var(--ink); }
+.ai-card.alt strong { color: var(--ink); }
+.ai-card.alt span span { color: #2A1533; }
+.ai-card:hover { color: inherit; }
+.chat-orb.small { width: 46px; height: 46px; }
+.chat-orb.small::after { inset: 7px; }
+.ai-wand { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 50%; background: #2A1533; font-size: 22px; animation: orbspin 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .ai-wand { animation: none; } }

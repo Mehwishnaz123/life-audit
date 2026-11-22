@@ -1,3 +1,4 @@
+export const metadata = { title: 'Gratitude · Life Audit' };
 import { getAppContext } from '@/lib/app-data';
 import { addDays, prettyDate } from '@/lib/dates';
 import { addGratitude, deleteGratitude } from '@/lib/actions/app';

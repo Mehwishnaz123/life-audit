@@ -1,3 +1,4 @@
+export const metadata = { title: 'Website admin · Life Audit' };
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { DEFAULT_SETTINGS } from '@/lib/content';

@@ -3,7 +3,7 @@ import { getAppContext } from '@/lib/app-data';
 import { isAiConnected } from '@/lib/gemini';
 import PlannerForm from '@/components/PlannerForm';
 
-export const metadata: Metadata = { title: 'AI Planner' };
+export const metadata: Metadata = { title: 'AI Planner · Life Audit' };
 
 export default async function PlannerPage() {
   const { today } = await getAppContext();

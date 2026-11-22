@@ -1,3 +1,4 @@
+export const metadata = { title: 'This year · Life Audit' };
 import Link from 'next/link';
 import { getAppContext } from '@/lib/app-data';
 

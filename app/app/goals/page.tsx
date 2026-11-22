@@ -1,3 +1,4 @@
+export const metadata = { title: 'Goals · Life Audit' };
 import { getAppContext } from '@/lib/app-data';
 import { addGoal, addMilestone, toggleMilestone, setGoalStatus, deleteGoal } from '@/lib/actions/app';
 import { urgency } from '@/lib/dates';

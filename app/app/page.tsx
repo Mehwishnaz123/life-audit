@@ -1,3 +1,4 @@
+export const metadata = { title: 'My dashboard · Life Audit' };
 import Link from 'next/link';
 import { getAppContext, type Task } from '@/lib/app-data';
 import { addDays, prettyDate } from '@/lib/dates';
@@ -101,6 +102,23 @@ export default async function OverviewPage() {
 
       <section className="card">
         <AddTaskForm areas={areas} today={today} />
+      </section>
+
+      <section className="ai-cards" aria-label="AI helpers">
+        <Link href="/app/coach" className="ai-card lift">
+          <span className="chat-orb small" aria-hidden="true" />
+          <span className="stack" style={{ gap: 2 }}>
+            <strong>Ask your AI Coach</strong>
+            <span>"How did my week go?" It reads only what you recorded.</span>
+          </span>
+        </Link>
+        <Link href="/app/planner" className="ai-card lift alt">
+          <span className="ai-wand" aria-hidden="true">✨</span>
+          <span className="stack" style={{ gap: 2 }}>
+            <strong>Turn a goal into a plan</strong>
+            <span>Type a big goal. Get steps and this week's time blocks.</span>
+          </span>
+        </Link>
       </section>
 
       <section className="cols">

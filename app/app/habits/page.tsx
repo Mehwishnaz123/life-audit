@@ -1,3 +1,4 @@
+export const metadata = { title: 'Habits · Life Audit' };
 import { getAppContext } from '@/lib/app-data';
 import { addDays } from '@/lib/dates';
 import { addHabit, toggleHabit, archiveHabit } from '@/lib/actions/app';

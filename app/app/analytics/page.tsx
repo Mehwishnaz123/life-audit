@@ -1,3 +1,4 @@
+export const metadata = { title: 'Life balance · Life Audit' };
 import Link from 'next/link';
 import { getAppContext } from '@/lib/app-data';
 import { addDays } from '@/lib/dates';

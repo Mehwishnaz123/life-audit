@@ -1,3 +1,4 @@
+export const metadata = { title: 'Settings · Life Audit' };
 import { getAppContext } from '@/lib/app-data';
 import { saveProfile, requestDeletion } from '@/lib/actions/app';
 import FormMessage from '@/components/FormMessage';

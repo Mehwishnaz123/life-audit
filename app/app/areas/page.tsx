@@ -1,3 +1,4 @@
+export const metadata = { title: 'Life areas · Life Audit' };
 import { getAppContext } from '@/lib/app-data';
 import { addArea, updateArea, archiveArea } from '@/lib/actions/app';
 

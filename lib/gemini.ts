@@ -4,7 +4,9 @@
  * so it is never sent to the browser.
  */
 const KEY = () => (process.env.GEMINI_API_KEY || process.env.AI_API_KEY || '').trim();
-const MODELS = () => [process.env.GEMINI_MODEL, 'gemini-flash-latest', 'gemini-3.5-flash', 'gemini-2.5-flash'].filter(Boolean) as string[];
+const MODELS = () => [process.env.GEMINI_MODEL, 'gemini-3.5-flash', 'gemini-2.5-flash', 'gemini-flash-latest'].filter(Boolean) as string[];
+/* On Netlify, the AI Gateway may provide GOOGLE_GEMINI_BASE_URL. Your own GEMINI_API_KEY in Netlify always takes priority. */
+const BASE = () => (process.env.GOOGLE_GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com').replace(/\/$/, '');
 
 export function isAiConnected() {
   return Boolean(KEY());
@@ -34,7 +36,7 @@ export async function askGemini(opts: { system: string; turns: Turn[]; json?: bo
   });
   let last = '';
   for (const model of MODELS()) {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+    const res = await fetch(`${BASE()}/v1beta/models/${model}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
       body,

@@ -3,7 +3,7 @@ import { getAppContext } from '@/lib/app-data';
 import { isAiConnected } from '@/lib/gemini';
 import CoachChat from '@/components/CoachChat';
 
-export const metadata: Metadata = { title: 'AI Coach' };
+export const metadata: Metadata = { title: 'AI Coach · Life Audit' };
 
 export default async function CoachPage() {
   const { name } = await getAppContext();
