@@ -25,4 +25,6 @@ jobs:
           echo "--- robots.txt ---"; curl -s $SITE/robots.txt
           echo "--- sitemap (first lines) ---"; curl -s $SITE/sitemap.xml | head -c 600; echo
           echo "--- canonical on home ---"; curl -s $SITE/ | grep -o '<link rel="canonical"[^>]*>' | head -1
+          echo "--- demo video ---"; curl -s -o /dev/null -w '%{http_code} %{size_download} bytes\n' $SITE/demo.mp4
+          echo "--- health (database + AI test) ---"; curl -s "$SITE/api/health?ai=1"; echo
           exit $fail

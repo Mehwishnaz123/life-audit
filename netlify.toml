@@ -1,0 +1,4 @@
+# Only rebuild the website when something other than the GitHub check files changed.
+# This saves Netlify credits on the free plan.
+[build]
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude).github' ':(exclude)README.md'"
