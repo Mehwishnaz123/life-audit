@@ -406,3 +406,11 @@ h1, h2, h3 { text-wrap: balance; }
 /* Product tour video */
 .tour-frame { position: relative; border-radius: 28px; padding: 8px; background: var(--grad); box-shadow: 0 30px 70px rgba(255,79,139,.25); }
 .tour-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 22px; background: #2A1533; }
+
+/* Phone: the floating 'Start free' button appears only after you scroll past the top of the page */
+@supports (animation-timeline: scroll()) {
+  @media (max-width: 760px) {
+    .mobile-cta { animation: ctaIn linear both; animation-timeline: scroll(root); animation-range: 0 420px; }
+    @keyframes ctaIn { 0%, 60% { opacity: 0; transform: translateY(24px); visibility: hidden; } 100% { opacity: 1; transform: none; visibility: visible; } }
+  }
+}
