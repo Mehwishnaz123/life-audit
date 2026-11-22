@@ -386,3 +386,5 @@ h1, h2, h3 { text-wrap: balance; }
   .plan-blocks li span:last-child { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) { .chat-orb, .bubble, .plan-steps li, .chat-hello, .plan-card { animation: none; } }
+
+.early-note { margin: 8px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--butter); color: #5A3D0C; font-size: 14px; line-height: 1.45; }

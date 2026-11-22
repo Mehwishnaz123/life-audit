@@ -22,9 +22,12 @@ export default function PricingCards({ plans }: { plans: Plan[] }) {
               Start free now
             </Link>
           ) : (
-            <span className="btn" aria-disabled="true" style={{ marginTop: 8, opacity: 0.85, cursor: 'default', background: p.highlighted ? 'var(--yellow)' : 'var(--peach)', boxShadow: 'none', transform: 'none' }}>
-              Coming soon
-            </span>
+            <>
+              <p className="early-note">🎉 <b>Free during early access.</b> Every {p.name} feature that's ready is unlocked for you now. Paid plans start later, and you'll be told before anything changes.</p>
+              <Link href="/signup" className={'btn' + (p.highlighted ? '' : ' dark')} style={{ marginTop: 4 }}>
+                Try {p.name} free
+              </Link>
+            </>
           )}
         </article>
       ))}

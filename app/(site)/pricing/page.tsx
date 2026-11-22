@@ -21,7 +21,7 @@ export default async function PricingPage() {
           <p className="lead">Every plan keeps your data private and exportable. If you ever downgrade, everything you recorded stays readable.</p>
         </div>
         <PricingCards plans={plans} />
-        <p className="muted">Prices are in US dollars. Paid plans open once the payment provider is connected.</p>
+        <p className="muted">Prices are in US dollars. Right now Life Audit is in free early access, so you pay nothing. When paid plans start, we will tell you first, and your data always stays yours.</p>
       </div>
     </section>
   );
