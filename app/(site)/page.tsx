@@ -63,6 +63,7 @@ export default async function HomePage() {
           '@graph': [
             { '@type': 'Organization', '@id': SITE_URL + '/#org', name: SITE_NAME, url: SITE_URL },
             { '@type': 'WebSite', '@id': SITE_URL + '/#site', name: SITE_NAME, url: SITE_URL, publisher: { '@id': SITE_URL + '/#org' } },
+            { '@type': 'VideoObject', name: `${SITE_NAME} product tour`, description: 'A short tour of every Life Audit feature: hourly planning, planned vs real, habits, goals, journal, weekly reports, life balance, AI Coach and AI Planner.', thumbnailUrl: SITE_URL + '/demo-poster.jpg', contentUrl: SITE_URL + '/demo.mp4', uploadDate: '2026-11-22', duration: 'PT1M45S' },
             { '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', description: SITE_DESCRIPTION, url: SITE_URL, offers },
           ],
         }}
