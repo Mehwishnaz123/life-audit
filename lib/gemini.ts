@@ -32,7 +32,7 @@ export async function askGemini(opts: { system: string; turns: Turn[]; json?: bo
   const body = JSON.stringify({
     systemInstruction: { parts: [{ text: opts.system }] },
     contents: opts.turns.map((t) => ({ role: t.role, parts: [{ text: t.text }] })),
-    generationConfig: { temperature: 0.5, maxOutputTokens: 2048, ...(opts.json ? { responseMimeType: 'application/json' } : {}) },
+    generationConfig: { temperature: 0.5, maxOutputTokens: opts.json ? 8192 : 4096, ...(opts.json ? { responseMimeType: 'application/json' } : {}) },
   });
   let last = '';
   for (const model of MODELS()) {

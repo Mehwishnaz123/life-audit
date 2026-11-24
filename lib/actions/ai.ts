@@ -72,13 +72,26 @@ ${JSON.stringify(facts)}`;
 Deadline: ${input.deadline || 'not given, choose a sensible one'}
 Hours I can give per day: ${input.hours || 'about 1'}
 Best time of day for me: ${input.times || 'any free time'}`;
-    const raw = await askGemini({ system, turns: [{ role: 'user', text: ask }], json: true });
-    const plan = clean(JSON.parse(raw.replace(/^```json\s*|```$/g, '')), today);
+    let parsed: any = null;
+    for (let attempt = 0; attempt < 2 && !parsed; attempt++) {
+      const raw = await askGemini({ system, turns: [{ role: 'user', text: ask }], json: true });
+      parsed = readJson(raw);
+    }
+    if (!parsed) return { ok: false, error: 'The AI answer was not readable. Please try again.' };
+    const plan = clean(parsed, today);
     if (!plan.milestones.length) return { ok: false, error: 'The AI could not make a plan from that. Try describing the goal in a bit more detail.' };
     return { ok: true, data: plan };
   } catch (e: any) {
     return { ok: false, error: e instanceof SyntaxError ? 'The AI answer was not readable. Please try again.' : e?.message || 'Something went wrong.' };
   }
+}
+
+function readJson(raw: string): any {
+  const t = raw.replace(/^```(?:json)?\s*|```\s*$/g, '').trim();
+  try { return JSON.parse(t); } catch {}
+  const a = t.indexOf('{'), b = t.lastIndexOf('}');
+  if (a >= 0 && b > a) { try { return JSON.parse(t.slice(a, b + 1)); } catch {} }
+  return null;
 }
 
 const isDate = (v: any) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);

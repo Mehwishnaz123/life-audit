@@ -45,7 +45,7 @@ export default function CoachChat({ name, connected }: { name: string; connected
           </div>
         )}
         {turns.map((t, i) => (
-          <div key={i} className={'bubble ' + (t.role === 'user' ? 'me' : 'ai')}>{t.text}</div>
+          <div key={i} className={'bubble ' + (t.role === 'user' ? 'me' : 'ai')}>{t.role === 'user' ? t.text : <Pretty text={t.text} />}</div>
         ))}
         {pending && <div className="bubble ai typing"><span /><span /><span /></div>}
         <div ref={end} />
@@ -59,3 +59,24 @@ export default function CoachChat({ name, connected }: { name: string; connected
     </div>
   );
 }
+
+// Shows the coach's answer with simple formatting: **bold** and "* " / "- " bullets.
+function Pretty({ text }: { text: string }) {
+  const lines = text.replace(/\r/g, '').split('\n');
+  return (
+    <>
+      {lines.map((line, i) => {
+        const bullet = /^\s*[*-]\s+/.test(line);
+        const body = line.replace(/^\s*[*-]\s+/, '').replace(/^#+\s*/, '');
+        const parts = body.split(/\*\*(.+?)\*\*/g).map((p, j) => (j % 2 ? <b key={j}>{p}</b> : p.replace(/\*/g, '')));
+        return (
+          <span key={i}>
+            {bullet ? '• ' : ''}{parts}
+            {i < lines.length - 1 ? '\n' : ''}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
